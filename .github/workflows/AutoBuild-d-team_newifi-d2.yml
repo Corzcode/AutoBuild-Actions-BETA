@@ -183,9 +183,13 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        echo "go1 "
         sudo mkdir -p /workdir
+        echo "go2 "
         sudo chown $USER:$GROUPS /workdir
+        echo "go3 "
         sudo dpkg --add-architecture i386
+        echo "go4 "
         sudo -E apt update
         sudo -E apt -y install lib32gcc1 libc6-i386
         sudo -E apt -y full-upgrade
