@@ -179,6 +179,15 @@ jobs:
         echo "UPLOAD_ARTIFACTS=${UPLOAD_ARTIFACTS}" >> $GITHUB_ENV
         echo "UPLOAD_BIN_ARTIFACTS=${UPLOAD_BIN_ARTIFACTS}" >> $GITHUB_ENV
 
+    - name: Add i386
+      run: |
+        echo "add1 "
+        sudo dpkg --add-architecture i386
+        echo "add2 "
+        sudo -E apt update
+        echo "add3 "
+        sudo -E apt -y install lib32gcc1 libc6-i386
+
     - name: Initialize Environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -191,9 +200,13 @@ jobs:
         sudo dpkg --add-architecture i386
         echo "go4 "
         sudo -E apt update
+        echo "go5 "
         sudo -E apt -y install lib32gcc1 libc6-i386
+        echo "go6 "
         sudo -E apt -y full-upgrade
+        echo "go7 "
         sudo -E apt -y install busybox build-essential cmake asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python2.7 python3 python3-pip python3-ply haveged lrzsz device-tree-compiler scons antlr3 gperf intltool mkisofs rsync
+        echo "go8 "
         sudo -E apt -y autoremove --purge
         sudo -E apt clean
         sudo timedatectl set-timezone "Asia/Shanghai"
