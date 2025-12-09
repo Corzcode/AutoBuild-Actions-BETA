@@ -198,6 +198,7 @@ jobs:
         git clone -b $REPO_BRANCH $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         cd openwrt
+        sed -i 's/^#src-git helloworld/src-git helloworld/' feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
